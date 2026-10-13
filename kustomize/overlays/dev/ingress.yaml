@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sk333-myfirst-api-server
+  namespace: class-10
+spec:
+  ingressClassName: public-nginx
+  tls:
+    - hosts: [sk333-ingress.class-10.skala-ai.com]
+      secretName: wildcard-class-10-skala-ai-com-tls
+  rules:
+    - host: sk333-ingress.class-10.skala-ai.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sk333-myfirst-api-server
+                port:
+                  number: 8080
