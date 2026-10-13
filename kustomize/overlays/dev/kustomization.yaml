@@ -20,4 +20,4 @@ patches:
 images:
 - name: skala-registry.skala-ai.com/class-10/sk333-webserver
   newName: skala-registry.skala-ai.com/class-10/sk333-webserver
-  newTag: 1.0-ci-buildkit-bk1-aaf0935
+  newTag: 1.0-ci-buildah-bd1-db57521
