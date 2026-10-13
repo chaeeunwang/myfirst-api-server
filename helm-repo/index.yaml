@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  sk333-myfirst-helmchart:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2026-10-13T09:36:47.367569+09:00"
+    description: A Helm chart for Kubernetes
+    digest: 000be157165c7597ec6595f354d72aa835686b1d18566f2d74e92598ce332096
+    name: sk333-myfirst-helmchart
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/chaeeunwang/myfirst-api-server/master/helm-repo/sk333-myfirst-helmchart-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-10-13T09:36:47.367014+09:00"
