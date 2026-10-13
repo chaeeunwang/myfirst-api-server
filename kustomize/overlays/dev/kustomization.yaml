@@ -20,4 +20,4 @@ patches:
 images:
 - name: skala-registry.skala-ai.com/class-10/sk333-webserver
   newName: skala-registry.skala-ai.com/class-10/sk333-webserver
-  newTag: 1.0-ci-docker-dk2-d5f77e2
+  newTag: 1.0-ci-buildah-bd3-d5f77e2
