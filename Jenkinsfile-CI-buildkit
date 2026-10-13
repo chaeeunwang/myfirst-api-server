@@ -55,6 +55,7 @@ pipeline {
           env.FINAL_IMAGE_TAG = "${env.IMAGE_TAG}-bk${env.BUILD_NUMBER}-${shortCommit}"
         }
         sh '''
+            set +x
             set -eu
             IMAGE_REF="${IMAGE_REGISTRY_URL}/${IMAGE_REGISTRY_PROJECT}/${IMAGE_NAME}:${FINAL_IMAGE_TAG}"
 
@@ -94,6 +95,7 @@ EOF
             env.REPO_PATH = env.GIT_URL.replaceFirst(/^https?:\/\//, '')
           }
           sh '''
+            set +x
             set -eu
             git config user.name  "skala-gitops"
             git config user.email "skala@skala-ai.com"
