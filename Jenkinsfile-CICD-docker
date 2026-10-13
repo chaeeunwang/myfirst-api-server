@@ -35,7 +35,7 @@ pipeline {
     stage('Build with Maven') {
       steps {
         echo 'Build with Maven'
-        sh 'mvn clean package -DskipTests'
+        sh 'mvn -B -ntp clean package -DskipTests'
         sh 'ls -al'
       }
     }
@@ -51,6 +51,8 @@ pipeline {
         sh '''
             set +x
             set -eu
+            export DOCKER_CONFIG="$(mktemp -d)"
+            trap 'rm -rf "$DOCKER_CONFIG"' EXIT
             REG_HOST="${IMAGE_REGISTRY_URL}"
             FINAL_IMAGE_TAG="${IMAGE_TAG}-${BUILD_NUMBER}"
             IMAGE_REF="${IMAGE_REGISTRY_URL}/${IMAGE_REGISTRY_PROJECT}/${IMAGE_NAME}:${FINAL_IMAGE_TAG}"

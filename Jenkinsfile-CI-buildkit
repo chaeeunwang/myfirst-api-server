@@ -36,7 +36,7 @@ pipeline {
     stage('Build with Maven') {
       steps {
         echo 'Build with Maven'
-        sh 'mvn clean package -DskipTests'
+        sh 'mvn -B -ntp clean package -DskipTests'
         sh 'ls -al'
       }
     }
@@ -60,9 +60,10 @@ pipeline {
             IMAGE_REF="${IMAGE_REGISTRY_URL}/${IMAGE_REGISTRY_PROJECT}/${IMAGE_NAME}:${FINAL_IMAGE_TAG}"
 
             # 1. 인증: username/password로 config.json 생성 (buildkit은 DOCKER_CONFIG의 config.json으로 레지스트리 인증)
-            mkdir -p ~/.docker
+            export DOCKER_CONFIG="$(mktemp -d)"
+            trap 'rm -rf "$DOCKER_CONFIG"' EXIT
             AUTH=$(printf '%s:%s' "${REG_USER}" "${REG_PASS}" | base64 | tr -d '\n')
-            cat > ~/.docker/config.json << EOF
+            cat > "$DOCKER_CONFIG/config.json" << EOF
 {"auths":{"${IMAGE_REGISTRY_URL}":{"auth":"${AUTH}"}}}
 EOF
 
