@@ -8,7 +8,7 @@ pipeline {
     GIT_ID                 = 'skala-github-id'   // GitHub PAT credential ID
     IMAGE_NAME             = 'sk333-webserver'
     // =======================
-    IMAGE_TAG              = '1.0-ci-buildkit'
+    IMAGE_TAG              = '1.0'
     IMAGE_REGISTRY_URL     = 'skala-registry.skala-ai.com'
     IMAGE_REGISTRY_PROJECT = 'class-10'
 
@@ -21,7 +21,6 @@ pipeline {
   options {
     disableConcurrentBuilds()
     timestamps()
-    timeout(time: 20, unit: "MINUTES")
   }
 
   stages {
@@ -36,7 +35,7 @@ pipeline {
     stage('Build with Maven') {
       steps {
         echo 'Build with Maven'
-        sh 'mvn -B -ntp clean package -DskipTests'
+        sh 'mvn clean package -DskipTests'
         sh 'ls -al'
       }
     }
